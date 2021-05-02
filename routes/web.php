@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/services', function () {
 //     return view('pages.services');
 // });
-
+Route::get('/','App\Http\Controllers\PagesController@index');
 Route::get('/about','App\Http\Controllers\PagesController@about');
 Route::get('/services','App\Http\Controllers\PagesController@services');
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
  @section('content')
-  <h1>About Page</h1>
-  <p>This is about page</p>
+  <h1>Index Page</h1>
+  <p>This is index page</p>
 
 @endsection
