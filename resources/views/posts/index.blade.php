@@ -1,7 +1,7 @@
 @extends('layouts.app')
  @section('content')
   <h1 style="text-align:center">Posts</h1>
-  @if(count($posts) > 1)
+  @if(count($posts) > 0)
     @foreach ($posts as $post )
      <div class="container">
       <ol class="list-group list-group-numbered">
@@ -16,6 +16,7 @@
 </ol>
 </div>
   @endforeach
+  {{$posts->links()}}
 
   @else
      <p>No Post found</p>
