@@ -16,7 +16,7 @@ class PostsController extends Controller
         // $posts = Posts::all();
         //  return Post::where('title', 'Post two')->get();
         // $posts = Posts::orderBy('created_at', 'desc')->take(1)->get();
-        $posts = Posts::orderBy('created_at', 'desc')->paginate(1);
+        $posts = Posts::orderBy('created_at', 'desc')->paginate(10);
         // $posts = Posts::orderBy('created_at', 'desc')->get();
         return view('posts.index')->with('posts',$posts);
     }
@@ -39,7 +39,18 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+      // Create Post -- we did this with tinker before
+      $post = new Posts;
+      $post->title = $request->input('title');
+      $post->body = $request->input('body');
+      $post->save();
+
+      return redirect('/posts')->with('success', 'Post created');
     }
 
     /**

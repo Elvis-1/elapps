@@ -48,6 +48,9 @@
         <li class="nav-item ml-1">
           <a class="nav-link" href="/posts">Blog</a>
         </li>
+        <li class="nav-item ml-1">
+          <a class="nav-link" href="/posts/create">Create Post</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -104,7 +107,10 @@
         </nav>
 
         <main class="py-4">
+          <div class="container">
+          @include('inc.messages')
             @yield('content')
+            </div>
         </main>
     </div>
 </body>
