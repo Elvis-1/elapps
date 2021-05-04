@@ -8,8 +8,14 @@
     <div class="ms-2 me-auto">
        {{$post->body}}
     </div>
-    <span class="badge bg-primary rounded-pill">Written on {{$post->created_at}}</span>
+    <small class="badge bg-primary rounded-pill">Written on {{$post->created_at}}</small>
+
   </li><br><br>
+  <p style="margin-left:5px"><a href="/posts/{{$post->id}}/edit" class="btn btn-default" role="button">Edit </a></p>
+  {!!Form::open(['action'=>['App\Http\Controllers\PostsController@destroy', $post->id], 'method'=>'POST','class'=>'pull-right'])!!}
+   {{Form::hidden('_method','DELETE') }}
+   {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+   {!!Form::close()!!} 
  </ol>
 </div>
             
