@@ -12,6 +12,10 @@ class Posts extends Model
     protected $table = 'posts';
     //timestamp
     public $timestamp = true;
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
 }
 
 

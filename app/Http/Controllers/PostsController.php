@@ -6,6 +6,16 @@ use Illuminate\Http\Request;
 use  App\Models\Posts;
 class PostsController extends Controller
 {
+      /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth',['except'=> ['index','show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -48,6 +58,7 @@ class PostsController extends Controller
       $post = new Posts;
       $post->title = $request->input('title');
       $post->body = $request->input('body');
+      $post->user_id = auth()->users()->id;
       $post->save();
 
       return redirect('/posts')->with('success', 'Post created');
@@ -74,6 +85,11 @@ class PostsController extends Controller
     public function edit($id)
     {
          $post = Posts::find($id);
+
+         // check for user
+          if(auth()->users()->id !== $posts->user_id){
+            return redirect('/posts')->with('error','Unauthorized page');
+          }
          return view('posts.edit')->with('post',$post);
     }
 
@@ -109,6 +125,10 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Posts::find($id);
+         // check for user
+         if(auth()->users()->id !== $post->user_id){
+            return redirect('/posts')->with('error','Unauthorized page');
+          }
         $post->delete();
         return redirect('/posts')->with('success', 'Post Removed');
     }

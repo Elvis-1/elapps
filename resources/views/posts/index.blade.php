@@ -8,7 +8,7 @@
   <li class="list-group-item d-flex justify-content-between align-items-start">
     <div class="ms-2 me-auto">
       <div class="fw-bold"><h3><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3></div>
-      <small>{{$post->created_at}}</small>
+      <small>{{$post->created_at}} by {{$post->user->name}}</small>
     </div>
     <span class="badge bg-primary rounded-pill">{{$post->user_id}}</span>
   </li><br><br>
