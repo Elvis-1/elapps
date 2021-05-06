@@ -4,7 +4,7 @@
 <div class="container">
 <h1>Create Posts</h1>
 
-{!! Form::open(['action' =>'App\Http\Controllers\PostsController@store', 'method' => 'POST']) !!}
+{!! Form::open(['action' =>'App\Http\Controllers\PostsController@store', 'method' => 'POST','enctype' => 'multipart/form-data']) !!}
     <div class="form-group">
       {{Form::label('title', 'Title')}}
       {{Form::text('title', '',['class' => 'form-control', 'placeholder' => 'Title' ])}}
@@ -13,11 +13,14 @@
       {{Form::label('body', 'Body')}}
       {{Form::textarea('body', '',['id'=>'article-ckeditor', 'class' => 'ckeditor form-control',  'placeholder' => 'Body Text' ])}}
     </div>
+     <div class="form-group">
+        {{Form::file('cover_image')}}
+     </div>
     {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
 {!! Form::close() !!}
 </div>
 {{-- <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script> --}}
-<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+{{-- <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script> --}}
 <script type="text/javascript">
     $(document).ready(function () {
         $('.ckeditor').ckeditor();
